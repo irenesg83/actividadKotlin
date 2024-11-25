@@ -33,3 +33,4 @@ fun main() {
             else if (ex.contains("(")) if (ex.contains(")")) print(true) else print(false)
 
 }
+// he visto soluciones en internet que arreglan mi error usando un hash, pero no hemos visto eso en clase así que mejor no ponerlo
