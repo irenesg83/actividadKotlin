@@ -2,16 +2,18 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
 
-    for (i in 1..100) {
-        if ((i%3!=0) && (i%5!=0)) { println(i) }
+    var palabra1: String
+    var palabra2: String
 
-        else if ((i%3==0) && (i%5!=0)) { println("tri") }
+    println("Introduce una palabra")
+    palabra1=readln()
 
-        else if ((i%3!=0) && (i%5==0)) { println("qui") }
+    println("Introduce otra palabra")
+    palabra2=readln()
 
-        else if ((i%3==0) && (i%5==0)) { println("triqui") }
+    println("¿Son $palabra1 y $palabra2 anagramas? ")
 
+    if (palabra1.equals(palabra2.reversed())) { print(true) }
+    else print(false)
 
-
-    }
 }
