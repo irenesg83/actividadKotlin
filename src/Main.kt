@@ -3,24 +3,33 @@
 fun main() {
 
     /*
-    
-    declaro las variables en junto al readln por limpieza, pero se pueden declarar por separado.
-    están declaradas como val porque nunca se modifican.
-    las paso a mayúsculas porque mi método para comprobar si son iguales distingue entre upper y lowercase.
+
+    declaro la variables junto al readln por limpieza, pero se puede declarar por separado.
+    está declarada como val porque nunca se modifica.
 
      */
-    println("Introduce una palabra")
-    val palabra1: String = readln().uppercase()
 
-    println("Introduce otra palabra")
-    val palabra2: String = readln().uppercase()
+    println("Introduce una expresión matemática")
+    val ex: String = readln()
 
-    println("¿Son $palabra1 y $palabra2 anagramas? ")
+    println("¿Balanceado?")
 
-    // comprueba si palabra1 y palabra2 son anagramas usando equals y String.reversed(). si palabra2 al revés es igual que palabra1, imprime true, si no, imprime false
-    if (palabra1.equals(palabra2.reversed())) { print(true) }
-    else print(false)
+    /*
 
-    // me imagino que también se puede hacer con arrays, añadiendo la primera letra de palabra2 a la última posición, la segunda a la penúltima, etc.. pero sería un lío
+    mi código no comprueba si hay repetidos y si dichos repetidos están en el orden adecuado.
+    sí comprueba que estén en el orden adecuado (es decir, si están en el orden llave > corchete > paréntesis).
+    quitando el error, funciona.
+
+
+     */
+    if (ex.contains("{"))
+
+        if (ex.contains("}") && (ex.contains("[")) && (ex.contains("]")) && (ex.contains("(")) && (ex.contains(")"))) print(true) else print(false)
+
+        else if (ex.contains("["))
+
+            if ((ex.contains("]")) && (ex.contains("(")) && (ex.contains(")"))) print(true) else print(false)
+
+            else if (ex.contains("(")) if (ex.contains(")")) print(true) else print(false)
 
 }
