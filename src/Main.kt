@@ -41,5 +41,6 @@ fun main() {
     fun String.allUnique(): Boolean = all(hashSetOf<Char>()::add)
     en los checks, se puede pasar como "&& ex.allUnique()"
     a pesar de que funciona con los ejemplos del enunciado, para un programa real no serviría, ya que comprueba que los caracteres sean únicos, no que las expresiones estén balanceadas, con lo cual ciertas expresiones correctas, como "2+(3*5)-(4+5)", imprimirían false
+    creo que se podría hacer bien pasando cada caracter de ex a un slot de un array, contando el número de (, [ y { únicos (y sus equivalentes de cierre), y comprobando si el número de caracteres de apertura coinciden con el de cierre, pero prefiero centrar mi recurso de tiempo en completar el resto de ejercicios a gastar el tiempo restante en arreglar un solo ejercicio
 
 */
