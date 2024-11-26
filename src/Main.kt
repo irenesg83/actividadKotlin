@@ -2,44 +2,72 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
 
-    /*
+    var x: Int = 1
+    var listAcciones: MutableList<String> = mutableListOf()
 
-    declaro la variables junto al readln por limpieza, pero se puede declarar por separado.
-    está declarada como val porque nunca se modifica.
+    while(x < 7) {
 
-     */
+        println("Introduce la $x º acción que ha realizado el atleta (saltar o correr)")
+        var accion: String = readln().uppercase()
 
-    println("Introduce una expresión matemática")
-    val ex: String = readln()
+        if ((accion=="CORRER")||(accion=="SALTAR")) {
 
-    println("¿Balanceado?")
+            listAcciones.add(accion)
+            x++
 
-    /*
+        } else println("Acción incorrecta.")
 
-    mi código no comprueba si hay repetidos y si dichos repetidos están en el orden adecuado.
-    sí comprueba que estén en el orden adecuado (es decir, si están en el orden llave > corchete > paréntesis).
+    }
+
+    var patternCorrecto = true
+    var patternPista: String
+
+    do {
+
+        println("Ahora introduce el patrón de la pista.")
+        patternPista = readln()
+
+        patternPista.length
+
+        for (i in 0..patternPista.length) {
+
+            if (patternPista.length<=5) {
+
+                if (patternPista.get(i)=='_' || patternPista.get(i)=='|') patternCorrecto=true
+
+            } else patternCorrecto = false
+
+        }
+
+        var rewrite=6
+
+        if (patternPista.length>6) {
+
+            patternPista.toCharArray().set(rewrite,'?')
+            patternPista.toString()
 
 
-     */
+        }
 
-    if (ex.contains("{"))
+    } while (patternCorrecto)
 
-        if (ex.contains("}") && (ex.contains("[")) && (ex.contains("]")) && (ex.contains("(")) && (ex.contains(")"))) print(true) else print(false)
 
-        else if (ex.contains("["))
 
-            if ((ex.contains("]")) && (ex.contains("(")) && (ex.contains(")"))) print(true) else print(false)
+    x = 0
+    var isCorrecto=false;
 
-            else if (ex.contains("(")) if (ex.contains(")")) print(true) else print(false)
+    while(x < 5) {
+
+        if (((listAcciones.get(x)=="CORRER") && (patternPista.get(x)=='_')) || ((listAcciones.get(x)=="SALTAR") && (patternPista.get(x)=='|'))) isCorrecto=true
+
+        else isCorrecto=false
+
+        if (patternPista.length>6) isCorrecto=false
+
+    }
+
+    println("$patternPista -> $isCorrecto")
 
 }
 
-/*
 
-    he visto soluciones en internet que arreglan mi error usando un hash, pero no hemos visto eso en clase así que mejor no ponerlo como código runneable
-    la solución en cuestión es esta función:
-    fun String.allUnique(): Boolean = all(hashSetOf<Char>()::add)
-    en los checks, se puede pasar como "&& ex.allUnique()"
-    a pesar de que funciona con los ejemplos del enunciado, para un programa real no serviría, ya que comprueba que los caracteres sean únicos, no que las expresiones estén balanceadas, con lo cual ciertas expresiones correctas, como "2+(3*5)-(4+5)", imprimirían false
-
-*/
