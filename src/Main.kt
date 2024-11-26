@@ -18,10 +18,10 @@ fun main() {
 
     mi código no comprueba si hay repetidos y si dichos repetidos están en el orden adecuado.
     sí comprueba que estén en el orden adecuado (es decir, si están en el orden llave > corchete > paréntesis).
-    quitando el error, funciona.
 
 
      */
+
     if (ex.contains("{"))
 
         if (ex.contains("}") && (ex.contains("[")) && (ex.contains("]")) && (ex.contains("(")) && (ex.contains(")"))) print(true) else print(false)
@@ -33,4 +33,13 @@ fun main() {
             else if (ex.contains("(")) if (ex.contains(")")) print(true) else print(false)
 
 }
-// he visto soluciones en internet que arreglan mi error usando un hash, pero no hemos visto eso en clase así que mejor no ponerlo
+
+/*
+
+    he visto soluciones en internet que arreglan mi error usando un hash, pero no hemos visto eso en clase así que mejor no ponerlo como código runneable
+    la solución en cuestión es esta función:
+    fun String.allUnique(): Boolean = all(hashSetOf<Char>()::add)
+    en los checks, se puede añadir como "&& ex.allUnique()"
+    a pesar de que funciona con los ejemplos del enunciado, para un programa real no serviría, ya que comprueba que los caracteres sean únicos, no que las expresiones estén balanceadas, con lo cual ciertas expresiones correctas, como "2+(3*5)-(4+5)", imprimirían false
+
+*/
