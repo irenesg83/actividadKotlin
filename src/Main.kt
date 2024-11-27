@@ -3,9 +3,9 @@
 fun main() {
 
     var x: Int = 1
-    var listAcciones: MutableList<String> = mutableListOf()
+    var listAcciones: MutableList<String> = mutableListOf() // se crea la lista de acciones
 
-    while(x < 7) {
+    while(x < 7) { //bucle para introducir las acciones
 
         println("Introduce la $x º acción que ha realizado el atleta (saltar o correr)")
         var accion: String = readln().uppercase()
@@ -21,52 +21,49 @@ fun main() {
 
     var patternCorrecto = true
     var patternPista: String
+    var i=0
+
+    println("Ahora introduce el patrón de la pista.")
+    patternPista = readln()
+
+    var pistaArray = patternPista.toCharArray() //se pasa el patrón a chararray para recorrer el string introducido de char a char
 
     do {
 
-        println("Ahora introduce el patrón de la pista.")
-        patternPista = readln()
+        while (i<pistaArray.size) {
 
-        patternPista.length
+            if (pistaArray.size<=5) {
 
-        for (i in 0..patternPista.length) {
-
-            if (patternPista.length<=5) {
-
-                if (patternPista.get(i)=='_' || patternPista.get(i)=='|') patternCorrecto=true
+                if (pistaArray.get(i)=='_' || pistaArray.get(i)=='|') patternCorrecto=true //si el char en la posición es | o _, el patrón es correcto
 
             } else patternCorrecto = false
 
+            i++
         }
 
-        var rewrite=6
-
-        if (patternPista.length>6) {
-
-            patternPista.toCharArray().set(rewrite,'?')
-            patternPista.toString()
-
-
-        }
 
     } while (patternCorrecto)
-
-
 
     x = 0
     var isCorrecto=false;
 
+
     while(x < 5) {
 
+        // se checkea que las acciones coincidan con lo introducido en el patrón. si es así se settea isCorrecto a true, si no se settea a false
         if (((listAcciones.get(x)=="CORRER") && (patternPista.get(x)=='_')) || ((listAcciones.get(x)=="SALTAR") && (patternPista.get(x)=='|'))) isCorrecto=true
 
         else isCorrecto=false
 
         if (patternPista.length>6) isCorrecto=false
 
+        x++
+
     }
 
-    println("$patternPista -> $isCorrecto")
+    println("$patternPista -> $isCorrecto") //se imprime el resultado
+
+    //lo único que no hace mi programa es cambiar caracteres extra a ?. por lo demás, el funcionamiento es correcto
 
 }
 
