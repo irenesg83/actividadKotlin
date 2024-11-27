@@ -2,71 +2,37 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
 
-    var x: Int = 1
-    var listAcciones: MutableList<String> = mutableListOf()
+    var arrayRaya = arrayListOf(ArrayList<String?>())
 
-    while(x < 7) {
+    val columna: ArrayList<String?> = arrayListOf()
+    arrayRaya.add(columna)
 
-        println("Introduce la $x º acción que ha realizado el atleta (saltar o correr)")
-        var accion: String = readln().uppercase()
+    var i = 0
+    var j = 0
 
-        if ((accion=="CORRER")||(accion=="SALTAR")) {
 
-            listAcciones.add(accion)
-            x++
 
-        } else println("Acción incorrecta.")
+    while (i <= 2) {
 
-    }
+        while (j <= 2) {
 
-    var patternCorrecto = true
-    var patternPista: String
+            println("Elige valor a añadir en la posición $i - $j (solo 'X', 'O' o ' ' (vacío)")
+            var valor: String = readln()
 
-    do {
+            if (valor.uppercase()=="X" || valor.uppercase()=="O" || valor==" ") {
 
-        println("Ahora introduce el patrón de la pista.")
-        patternPista = readln()
+                arrayRaya[i][j]=valor
+                j++
 
-        patternPista.length
-
-        for (i in 0..patternPista.length) {
-
-            if (patternPista.length<=5) {
-
-                if (patternPista.get(i)=='_' || patternPista.get(i)=='|') patternCorrecto=true
-
-            } else patternCorrecto = false
+            } else println("Valor incorrecto.")
 
         }
 
-        var rewrite=6
-
-        if (patternPista.length>6) {
-
-            patternPista.toCharArray().set(rewrite,'?')
-            patternPista.toString()
-
-
-        }
-
-    } while (patternCorrecto)
-
-
-
-    x = 0
-    var isCorrecto=false;
-
-    while(x < 5) {
-
-        if (((listAcciones.get(x)=="CORRER") && (patternPista.get(x)=='_')) || ((listAcciones.get(x)=="SALTAR") && (patternPista.get(x)=='|'))) isCorrecto=true
-
-        else isCorrecto=false
-
-        if (patternPista.length>6) isCorrecto=false
+        i++
 
     }
 
-    println("$patternPista -> $isCorrecto")
+
 
 }
 
