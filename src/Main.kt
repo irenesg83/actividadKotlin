@@ -14,33 +14,82 @@ fun main() {
 
     println("¿Balanceado?")
 
+    var exArray = ex.toCharArray() // paso ex a un CharArray para poder recorrer posición a posición
+
+    var i=0
+    var openLlave=0
+    var closeLlave=0
+    var openCorchete=0
+    var closeCorchete=0
+    var openParentesis=0
+    var closeParentesis=0
+
+    var llaveBal = true
+    var corBal = true
+    var parBal = true
+
+    while (i<exArray.size) { // recorro el array de ex y cuento cuántas instancias de los delimitadores están presentes
+
+        var charInEx = exArray.get(i)
+
+        when (charInEx) {
+
+            '{' -> openLlave++
+            '}' -> {
+                /*
+                    si el número de llaves cerradas no es igual al de llaves abiertas, el valor "llaveBal" es false.
+                    esto se hace para que la expresión 5 no de true.
+                    este checkeo se hace también con closeCorchete y closeParentesis.
+
+                */
+
+                closeLlave++
+                if (closeLlave != openLlave) llaveBal=false
+
+            }
+            '[' -> openCorchete++
+            ']' -> {
+
+                closeCorchete++
+                if (closeCorchete != openCorchete) corBal=false
+
+            }
+            '(' -> openParentesis++
+            ')' -> {
+
+                closeParentesis++
+                if (closeParentesis != openParentesis) parBal=false
+
+            }
+
+        }
+
+        i++
+
+    }
+
     /*
 
-    mi código no comprueba si hay repetidos y si dichos repetidos están en el orden adecuado.
-    sí comprueba que estén en el orden adecuado (es decir, si están en el orden llave > corchete > paréntesis).
+        El if de aquí es muy largo, así que aquí dejo una deglosación de lo que checkea
+        1. Que el número de llaves, corchetes y paréntesis abiertas es igual al que hay cerradas
+        2. Que llaveBal, corBal y parBal sean true (explicado lo que hacen más arriba)
 
+        Si todo se cumple, devuelve true (está balanceada); si no devuelve false.
 
      */
 
-    if (ex.contains("{"))
+    if (
+        (openLlave==closeLlave)
+        && (openCorchete==closeCorchete)
+        && (openParentesis==closeParentesis)
+        && (llaveBal==true)
+        && (corBal==true)
+        && (parBal==true)) {
 
-        if (ex.contains("}") && (ex.contains("[")) && (ex.contains("]")) && (ex.contains("(")) && (ex.contains(")"))) print(true) else print(false)
+            print(true)
 
-        else if (ex.contains("["))
-
-            if ((ex.contains("]")) && (ex.contains("(")) && (ex.contains(")"))) print(true) else print(false)
-
-            else if (ex.contains("(")) if (ex.contains(")")) print(true) else print(false)
+        } else  print(false)
 
 }
 
-/*
-
-    he visto soluciones en internet que arreglan mi error usando un hash, pero no hemos visto eso en clase así que mejor no ponerlo como código runneable
-    la solución en cuestión es esta función:
-    fun String.allUnique(): Boolean = all(hashSetOf<Char>()::add)
-    en los checks, se puede pasar como "&& ex.allUnique()"
-    a pesar de que funciona con los ejemplos del enunciado, para un programa real no serviría, ya que comprueba que los caracteres sean únicos, no que las expresiones estén balanceadas, con lo cual ciertas expresiones correctas, como "2+(3*5)-(4+5)", imprimirían false
-    creo que se podría hacer bien pasando cada caracter de ex a un slot de un array, contando el número de (, [ y { únicos (y sus equivalentes de cierre), y comprobando si el número de caracteres de apertura coinciden con el de cierre, pero prefiero centrar mi recurso de tiempo en completar el resto de ejercicios a gastar el tiempo restante en arreglar un solo ejercicio
-
-*/
+    // Pues al final la solución que se me ocurrió ayer funcionó xD
